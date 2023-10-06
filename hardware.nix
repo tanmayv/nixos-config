@@ -68,11 +68,8 @@
       export NIX_GSETTINGS_OVERRIDES_DIR=/nix/store/5m986d21kpxw64gk4vjba8hd5vvi26dy-gnome-settings-daemon-44.1/share/gsettings-schemas/gnome-settings-daemon-44.1/glib-2.0/schemas
 
       gsettings="/run/current-system/sw/bin/gsettings"
-     
       cat="/run/current-system/sw/bin/cat"
       powerprofilesctl="/run/current-system/sw/bin/powerprofilesctl"
-
-      gsettings_cmd="$gsettings set org.gnome.settings-daemon.plugins.power"
 
 
       while true; do
@@ -80,27 +77,22 @@
         battery0_state=$($cat /sys/class/power_supply/AC0/online)
 
         if [ "$battery0_state" = "0" ]; then
-            echo "Running on battery power."
+            #Running on battery power
       
             # Set power mode to quiet/powersaving
             $powerprofilesctl set power-saver
 
-
-            # Set GNOME power settings for battery power
-            # $gsettings_cmd sleep-inactive-battery-type 'suspend'
-            # $gsettings_cmd sleep-inactive-battery-timeout 600
-            # $gsettings_cmd idle-brightness 30
+            $gsettings set org.gnome.desktop.session idle-delay 60
 
         else
-            echo "Not running on battery power."
+            #Not running on battery power
 
             # Set power mode to quiet/powersaving
             $powerprofilesctl set balanced
 
-            # Set GNOME power settings for AC power
-            # $gsettings_cmd sleep-inactive-ac-type 'suspend'
-            # $gsettings_cmd sleep-inactive-ac-timeout 1200
-            # $gsettings_cmd idle-brightness 50
+            $gsettings set org.gnome.desktop.session idle-delay 300
+
+            
         fi
 
         # Sleep for 5 seconds before the next iteration

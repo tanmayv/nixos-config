@@ -152,7 +152,8 @@
   system.activationScripts.installFlatpaks = {
   text = ''
       apps="com.valvesoftware.Steam
-      net.rpcs3.RPCS3"
+      net.rpcs3.RPCS3
+      com.github.tchx84.Flatseal"
 
       flatpak_command="${pkgs.flatpak}/bin/flatpak"
       gawk_command="${pkgs.gawk}/bin/awk"
