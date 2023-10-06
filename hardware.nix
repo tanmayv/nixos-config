@@ -65,7 +65,8 @@
 
   systemd.services.onbattery = {
     script = ''
-      export NIX_GSETTINGS_OVERRIDES_DIR=/nix/store/5m986d21kpxw64gk4vjba8hd5vvi26dy-gnome-settings-daemon-44.1/share/gsettings-schemas/gnome-settings-daemon-44.1/glib-2.0/schemas
+      export NIX_GSETTINGS_OVERRIDES_DIR=/nix/store/88sfr8hqsrn3ggxc536p2mgxryik96mq-gnome-gsettings-overrides/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas
+      
 
       gsettings="/run/current-system/sw/bin/gsettings"
       cat="/run/current-system/sw/bin/cat"
