@@ -93,7 +93,7 @@
     
 
     #ide 
-    vscode
+    vscodium
     direnv
     git
 
