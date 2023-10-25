@@ -72,13 +72,25 @@
   programs.hyprland.enableNvidiaPatches = true;
 
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      # xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
-  };  
+  # Security
+  security = {
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
+  };
+
+  xdg = {
+  autostart.enable = true;
+  portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
+  };
   
   
 
