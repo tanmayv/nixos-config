@@ -6,7 +6,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   
-
+  
+  /*
   # And ensure gnome-settings-daemon udev rules are enabled 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
@@ -24,7 +25,7 @@
     #gnome-calculator
     #gnome-system-monitor
     #file-roller
-    #gnome-disk-utility
+    gnome-disk-utility
     #baobab
     gnome-logs
     seahorse
@@ -49,7 +50,8 @@
     hitori # sudoku game
     atomix # puzzle game
   ]);
-
+  
+  */
 
   services.xserver.excludePackages = (with pkgs; [ 
     xterm 
@@ -57,33 +59,65 @@
 
   environment.systemPackages = with pkgs; [
 
+
+    #gnome exclusive
+    #switcheroo-control #dbus for dual gpu
+    #gnomeExtensions.appindicator
+    #gnomeExtensions.dash-to-dock
+    #gnomeExtensions.blur-my-shell
+    #gnomeExtensions.supergfxctl-gex
+    #gnomeExtensions.compiz-alike-magic-lamp-effect
+
+
+
+    #hyprland exclusive
+    rofi-wayland
+    swaylock
+    swww
+    eww-wayland
+    waybar
+    kitty
+    grim 
+    slurp
+    pywal
+    starship
+    wlogout
+    feh
+    gnome.file-roller
+    gnome.gnome-system-monitor
+    gnome.baobab
+    gnome.gnome-calculator
+    gnome.nautilus
+    gnome.gnome-tweaks
+    lxqt.lxqt-policykit
+    
+
+    #ide 
+    vscode
+    direnv
+    git
+
+    
+    #rustc
+    #cargo 
+    
     #communication
     discord
 
     #browser
     brave
 
-    #mouse
-    solaar
-
-    #controllers
+    #xbox controllers
     xboxdrv
-    
-    #office 
-    #libreoffice-fresh
-    
-    #gnome shit
-    gnomeExtensions.appindicator
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.supergfxctl-gex
-    gnomeExtensions.compiz-alike-magic-lamp-effect
-    gnome.gnome-tweaks
+      
+  
+    #themes icons gtk
     colloid-icon-theme
     whitesur-icon-theme
     whitesur-gtk-theme
+    
    
-    # libraries
+    #libraries
     ntfs3g
     linuxHeaders
     linux-firmware
@@ -93,6 +127,10 @@
     gjs
    
     #utilities
+    killall
+    pamixer
+    brightnessctl
+    upower
     streamlink
     wget
     unzip
@@ -123,7 +161,7 @@
     imagemagick
     libnotify
     mangohud
-
+    
     #flatpak
     flatpak
     flatpak-builder
@@ -131,7 +169,6 @@
     # asus system 
     asusctl
     supergfxctl
-    switcheroo-control
     
     #virtual machines
     virt-manager
@@ -142,17 +179,31 @@
     
   ];
 
+  fonts.packages = with pkgs; [
+    font-awesome
+    iosevka
+    noto-fonts-cjk-sans
+    jetbrains-mono
+    nerdfonts
+    cascadia-code
+  ];
 
 
   programs.gamemode.enable = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+  
   
   #flatpak shit
   services.flatpak.enable = true;
 
   system.activationScripts.installFlatpaks = {
   text = ''
-      apps="com.valvesoftware.Steam
-      net.rpcs3.RPCS3
+      apps="net.rpcs3.RPCS3
       com.github.tchx84.Flatseal"
 
       flatpak_command="${pkgs.flatpak}/bin/flatpak"
@@ -213,8 +264,12 @@
   services.supergfxd.enable = true;
   systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
+  
   services.power-profiles-daemon.enable = true;
-  services.switcherooControl.enable = true;
+
+
+  #gnome exclusive services
+  #services.switcherooControl.enable = true;
 
   
 }

@@ -19,7 +19,7 @@
   system.stateVersion = "23.05";
   system.copySystemConfiguration = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  nix.settings.auto-optimise-store = true;
+  nix.optimise.automatic = true;
 
   
   #boot.kernelModules = [];

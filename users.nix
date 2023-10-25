@@ -25,6 +25,8 @@
       {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
   ];
 
+  security.polkit.enable = true;
+
   # sudo
   security.sudo = {
     enable = true;

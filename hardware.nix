@@ -4,7 +4,6 @@
   
   boot = { 
     
-    swraid.enable = false;
 
     loader = {
 
@@ -25,28 +24,38 @@
 
   };
 
-  
+
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
-      vaapiVdpau
+      libva
     ];
   };
 
+  
+
+ 
+
   services.xserver.videoDrivers = [ "nvidia" ];
+
+
+
   hardware.nvidia = {
+   
     modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
-    dynamicBoost.enable = true;
+    dynamicBoost.enable = true; 
     powerManagement.enable = true;
     powerManagement.finegrained = true;
     nvidiaPersistenced = true;
 
-    prime = {
+    
+    prime = { 
 
       offload = {
         enable = true;
@@ -59,16 +68,16 @@
 	  };
   };
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+ 
 
 
 
   systemd.services.onbattery = {
     script = ''
-      export NIX_GSETTINGS_OVERRIDES_DIR=/nix/store/88sfr8hqsrn3ggxc536p2mgxryik96mq-gnome-gsettings-overrides/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas
-      
 
-      gsettings="/run/current-system/sw/bin/gsettings"
+      #export NIX_GSETTINGS_OVERRIDES_DIR=/nix/store/kds7lzb51xd1dysqs1d842xbkpc2jmy0-gnome-gsettings-overrides/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas
+    
+      #gsettings="/run/current-system/sw/bin/gsettings"
       cat="/run/current-system/sw/bin/cat"
       powerprofilesctl="/run/current-system/sw/bin/powerprofilesctl"
 
@@ -83,7 +92,7 @@
             # Set power mode to quiet/powersaving
             $powerprofilesctl set power-saver
 
-            $gsettings set org.gnome.desktop.session idle-delay 60
+            #$gsettings set org.gnome.desktop.session idle-delay 60
 
         else
             #Not running on battery power
@@ -91,7 +100,7 @@
             # Set power mode to quiet/powersaving
             $powerprofilesctl set balanced
 
-            $gsettings set org.gnome.desktop.session idle-delay 300
+            #$gsettings set org.gnome.desktop.session idle-delay 300
 
             
         fi
@@ -109,7 +118,6 @@
 
   #logitech shit
   hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true; # for solaar to be included
   
 
   # Enable CUPS to print documents.
