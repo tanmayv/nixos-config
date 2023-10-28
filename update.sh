@@ -67,6 +67,8 @@ rm -rf $user_home/.config/gtk-4.0/*
 cp -r /etc/nixos/dots/gtk-4.0/* "$user_home/.config/gtk-4.0/"
 echo "The gtk-4.0 directory has been updated in $user_home/.config/gtk-4.0"
 
+
+
 echo "DONE ############################"
 
 

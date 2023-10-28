@@ -21,6 +21,9 @@
       {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
   ];
 
+
+
+
   
 
   # sudo

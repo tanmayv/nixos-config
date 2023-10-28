@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 
 {
@@ -58,7 +58,7 @@
   ]);
 
   environment.systemPackages = with pkgs; [
-
+    
 
     #gnome exclusive
     switcheroo-control #dbus for dual gpu
@@ -69,6 +69,7 @@
     gnomeExtensions.compiz-alike-magic-lamp-effect
     gnome.gnome-tweaks
     inputs.nix-software-center.packages.${system}.nix-software-center
+    
 
 
     #hyprland exclusive
