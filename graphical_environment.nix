@@ -3,7 +3,7 @@
 
 {
  
-  /*
+  
   nixpkgs.overlays = [ 
     
     #gnome vrr patch *doesn't work on unstable channel*
@@ -21,9 +21,13 @@
             })
             (super.fetchpatch {
               url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.patch";
-              hash = "sha256-3h8VwEkGYxG2BnOc6Je/TXpSaDGppbhYJ7/aOTjo8uA=";
+              hash = "sha256-+7wIrXJs10n6f+BWGJNgWM3IN5xwX2ylINYoqVg8YcU=";
             })
 
+            (super.fetchpatch {
+              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3342.patch";
+              hash = "sha256-dveVWMoZQocikLD3x7PnL7LT+DLfMhNuMnyWmhcBbbg=";
+            })
 
 
 
@@ -56,15 +60,17 @@
   
   ];
   
-  */
+  
 
   #gnome
-  #services.xserver.desktopManager.gnome.enable = true;
-  #services.xserver.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
 
 
+  #hyprland 
+  /*
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
   programs.hyprland.enableNvidiaPatches = true;
@@ -83,6 +89,6 @@
     };
   };
   
-  
+  */
 
 }

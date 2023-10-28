@@ -2,7 +2,7 @@
 
 # Update NixOS channels and switch to the latest generation
 nix-channel --update
-nixos-rebuild switch
+nixos-rebuild switch 
 
 
 
@@ -40,6 +40,7 @@ else
     echo "The waybar directory does not exist within .config"
     mkdir -p "$user_home/.config/waybar"
 fi
+rm -rf $user_home/.config/waybar/*
 cp -r /etc/nixos/dots/waybar/* "$user_home/.config/waybar/"
 echo "The waybar directory has been updated in $user_home/.config/waybar"
 
@@ -53,23 +54,17 @@ cp "/etc/nixos/dots/zsh/.zshrc" "$user_home/.zshrc"
 echo ".zshrc has been updated in $user_home/"
 
 
-#Gtk
-if [ -d "$user_home/.config/gtk-3.0" ]; then
-    echo "The gtk-3.0 directory exists within .config"
-else
-    echo "The gtk-3.0 directory does not exist within .config"
-    mkdir -p "$user_home/.config/gtk-3.0"
-fi
-cp -r /etc/nixos/dots/gtk/* "$user_home/.config/gtk-3.0/"
-echo "The gtk-3.0 directory has been updated in $user_home/.config/gtk-3.0"
 
+#gtk-4.0
 if [ -d "$user_home/.config/gtk-4.0" ]; then
     echo "The gtk-4.0 directory exists within .config"
 else
     echo "The gtk-4.0 directory does not exist within .config"
     mkdir -p "$user_home/.config/gtk-4.0"
 fi
-cp -r /etc/nixos/dots/gtk/* "$user_home/.config/gtk-4.0/"
+
+rm -rf $user_home/.config/gtk-4.0/*
+cp -r /etc/nixos/dots/gtk-4.0/* "$user_home/.config/gtk-4.0/"
 echo "The gtk-4.0 directory has been updated in $user_home/.config/gtk-4.0"
 
 echo "DONE ############################"

@@ -7,7 +7,7 @@
   # $ nix search wget
   
   
-  /*
+  
   # And ensure gnome-settings-daemon udev rules are enabled 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
@@ -51,7 +51,7 @@
     atomix # puzzle game
   ]);
   
-  */
+  
 
   services.xserver.excludePackages = (with pkgs; [ 
     xterm 
@@ -61,16 +61,18 @@
 
 
     #gnome exclusive
-    #switcheroo-control #dbus for dual gpu
-    #gnomeExtensions.appindicator
-    #gnomeExtensions.dash-to-dock
-    #gnomeExtensions.blur-my-shell
-    #gnomeExtensions.supergfxctl-gex
-    #gnomeExtensions.compiz-alike-magic-lamp-effect
-
+    switcheroo-control #dbus for dual gpu
+    gnomeExtensions.appindicator
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.supergfxctl-gex
+    gnomeExtensions.compiz-alike-magic-lamp-effect
+    gnome.gnome-tweaks
+    inputs.nix-software-center.packages.${system}.nix-software-center
 
 
     #hyprland exclusive
+    /*
     rofi-wayland
     swaylock
     swww
@@ -80,7 +82,6 @@
     grim 
     slurp
     pywal
-    starship
     wlogout
     feh
     gnome.file-roller
@@ -89,7 +90,10 @@
     gnome.gnome-calculator
     gnome.nautilus
     gnome.gnome-tweaks
-    lxqt.lxqt-policykit
+    */
+
+    #zsh shit
+    starship
     
 
     #ide 
@@ -114,7 +118,7 @@
     #themes icons gtk
     colloid-icon-theme
     whitesur-icon-theme
-    whitesur-gtk-theme
+    
     
    
     #libraries
@@ -162,10 +166,6 @@
     libnotify
     mangohud
     
-    #flatpak
-    flatpak
-    flatpak-builder
-
     # asus system 
     asusctl
     supergfxctl
@@ -177,6 +177,7 @@
     win-virtio
     win-spice
     
+
   ];
 
   fonts.packages = with pkgs; [
@@ -198,44 +199,6 @@
   };
   
   
-  #flatpak shit
-  services.flatpak.enable = true;
-
-  system.activationScripts.installFlatpaks = {
-  text = ''
-      apps="net.rpcs3.RPCS3
-      com.github.tchx84.Flatseal"
-
-      flatpak_command="${pkgs.flatpak}/bin/flatpak"
-      gawk_command="${pkgs.gawk}/bin/awk"
-      grep_command="${pkgs.gnugrep}/bin/grep"
-
-      # Add or update the Flatpak remote for Flathub
-      $flatpak_command remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-      # Get a list of already installed Flatpaks
-      installed=$($flatpak_command list --app | $gawk_command '{print $2}')
-
-      # Iterate through the list of installed Flatpaks and remove those not in the list
-      for flatpak in $installed; do
-        if ! echo "$apps" | $grep_command -q "$flatpak"; then
-          $flatpak_command uninstall -y --delete-data "$flatpak" 
-        fi
-      done
-
-      # Iterate through the list of apps and install if not already installed
-      echo "$apps" | while read -r line; do
-        if ! echo "$installed" | $grep_command -q "$line"; then
-          $flatpak_command install -y flathub "$line"
-        fi
-      done
-
-      # Update all installed Flatpaks
-      $flatpak_command update -y
-    '';
-  };
-
-
   
 
   #virtmanager
@@ -269,7 +232,7 @@
 
 
   #gnome exclusive services
-  #services.switcherooControl.enable = true;
+  services.switcherooControl.enable = true;
 
   
 }

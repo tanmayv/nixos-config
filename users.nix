@@ -13,10 +13,6 @@
     uid = 1000;
     group = "samuel";
     extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-        flatpak
-        gnome.gnome-software
-    ];
   };
 
   #ps3 emulator bs can't use memory, always something
