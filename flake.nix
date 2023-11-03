@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Flake for building my gnome system";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -13,15 +13,8 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
-          ./hardware.nix
-          ./network.nix
-          ./packages.nix
-          ./users.nix
-          ./environment.nix
-          ./graphical_environment.nix
-          ./sound.nix
-          ./time_locale.nix
-
+          ./packages.nix          
+         
         ];
         specialArgs = {
           inherit inputs;

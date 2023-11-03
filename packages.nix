@@ -72,27 +72,6 @@
     
 
 
-    #hyprland exclusive
-    /*
-    rofi-wayland
-    swaylock
-    swww
-    eww-wayland
-    waybar
-    kitty
-    grim 
-    slurp
-    pywal
-    wlogout
-    feh
-    gnome.file-roller
-    gnome.gnome-system-monitor
-    gnome.baobab
-    gnome.gnome-calculator
-    gnome.nautilus
-    gnome.gnome-tweaks
-    */
-
     #zsh shit
     starship
     
@@ -116,10 +95,10 @@
     xboxdrv
       
   
-    #themes icons gtk
-    colloid-icon-theme
+    #themes
     whitesur-icon-theme
-    
+    whitesur-gtk-theme
+    apple-cursor
     
    
     #libraries
@@ -228,8 +207,6 @@
   services.supergfxd.enable = true;
   systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
-  
-  services.power-profiles-daemon.enable = true;
 
 
   #gnome exclusive services
