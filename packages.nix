@@ -63,6 +63,7 @@
     #gnome exclusive
     switcheroo-control #dbus for dual gpu
     gnomeExtensions.appindicator
+    gnomeExtensions.hide-top-bar
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.supergfxctl-gex
@@ -111,6 +112,7 @@
     gjs
    
     #utilities
+    pywal
     killall
     pamixer
     brightnessctl

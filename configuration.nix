@@ -1,39 +1,57 @@
 { config, pkgs, ... }:
 
 {
-  system.stateVersion = "23.05";
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   
-  nix.optimise.automatic = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+ 
+  system = {
+    stateVersion = "23.05";
+    activationScripts.linkBash = {
+      text = ''
+        ln -sf ${pkgs.bash}/bin/bash /bin/bash
+      '';
+    };
 
-  environment.shells = with pkgs; [ zsh bash dash ];
-  environment.binsh = "${pkgs.dash}/bin/dash";
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
-  programs.zsh.ohMyZsh.enable = true;
-  #programs.zsh.ohMyZsh.theme = "trapd00r";
-  
-  system.activationScripts.linkBash = {
-    text = ''
-      ln -sf ${pkgs.bash}/bin/bash /bin/bash
-    '';
+  };
+ 
+ 
+  nix = {
+    optimise.automatic = true;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+
   };
 
-  environment.sessionVariables = rec {
-    
-    #NIXOS_OZONE_WL = "1";
-    XDG_CACHE_HOME  = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
 
-    # Not officially in the specification
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [ 
-      "${XDG_BIN_HOME}"
-    ];
+  environment = {
+    shells = with pkgs; [ zsh bash dash ];
+    binsh = "${pkgs.dash}/bin/dash";
+
+    sessionVariables = rec {
+      #NIXOS_OZONE_WL = "1";
+      XDG_CACHE_HOME  = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME   = "$HOME/.local/share";
+      XDG_STATE_HOME  = "$HOME/.local/state";
+
+      # Not officially in the specification
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      PATH = [ 
+        "${XDG_BIN_HOME}"
+      ];
+    };
+
   };
+
+
+  programs = {
+
+    zsh.enable = true;
+    zsh.enableCompletion = true;
+    zsh.ohMyZsh.enable = true;
+    #zsh.ohMyZsh.theme = "trapd00r";
+
+  };
+
+
 
 
   #gnome patches
@@ -47,12 +65,13 @@
         mutter = psuper.mutter.overrideAttrs (oldAttrs: {
           patches = (oldAttrs.patches or [ ]) ++ [
             
-            #dynamic triple/double buffer
+            #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
             (super.fetchpatch {
               url = "https://aur.archlinux.org/cgit/aur.git/plain/mr1441.patch?h=mutter-dynamic-buffering&id=d3a8bdd1b7bad6a7f3820f143fb8384dcd1ac497";
               hash = "sha256-VHL+++nkbYOsgrlrj3aJHDcOjs/Wkma0+mJzbLsjmrY=";
             })
 
+            #Bugs
             (super.fetchpatch {
               url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.patch";
               hash = "sha256-+7wIrXJs10n6f+BWGJNgWM3IN5xwX2ylINYoqVg8YcU=";
@@ -62,6 +81,11 @@
               url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3342.patch";
               hash = "sha256-dveVWMoZQocikLD3x7PnL7LT+DLfMhNuMnyWmhcBbbg=";
             })
+
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3329.patch";
+              #hash = "sha256-hSqmi4PEAXgLPN3t8/cKP65F9Pmhgpfxm+VzfT0upx8=";
+            #})
   
 
           ];
@@ -88,14 +112,49 @@
   ];
   
 
-  #gnome
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services = {
+
+    xserver = {
+      enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
+      videoDrivers = [ "nvidia" ];
+       # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
+    };
+
+    #sound
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
+
+    # Enable CUPS to print documents.
+    #printing.enable = true;
+
+    #openssh = {
+      #enable = true;
+      #ports = [ 22552 ];
+      #settings = {
+        #PermitRootLogin = "no";
+        #PasswordAuthentication = false;
+        #KbdInteractiveAuthentication = false;
+    #};
+
+    
+
+  };
 
 
   #bootloader
-  boot = {    
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest; #most update kernel    
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -114,7 +173,6 @@
   };
 
 
-  #Hardware
   hardware = {
   
     opengl = {
@@ -145,34 +203,22 @@
 
         amdgpuBusId = "PCI:7:0:0";
         nvidiaBusId = "PCI:1:0:0";
-
       };
     };
+
+    logitech.wireless.enable = true;
+    pulseaudio.enable = false;
+
+    #Bluetooth
+    #bluetooth.enable = true;
+
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
 
-  
-
-
-  hardware.logitech.wireless.enable = true;
-  
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Bluetooth
-  # hardware.bluetooth.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  #networking
   networking = {
     
     hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-    #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     enableIPv6 = true;
 
     nat = {
@@ -192,63 +238,34 @@
   };
   
 
-  #services.openssh = {
-    #enable = true;
-    #ports = [ 22552 ];
-    #settings = {
-      #PermitRootLogin = "no";
-      #PasswordAuthentication = false;
-      #KbdInteractiveAuthentication = false;
-    #};
-  #};
-
-
-  #sound
-  security.rtkit.enable = true;
-  
-  hardware.pulseaudio.enable = false;
-  
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-  };
-
 
   #time 
   time.timeZone = "America/New_York";
-
   i18n.defaultLocale = "en_US.UTF-8";
+
   console = { 
-  font = "Lat2-Terminus16";
-    keyMap = "us";
+    font = "Lat2-Terminus16";
+      keyMap = "us";
   };
+
 
 
   #users
-  users.mutableUsers = true;
-  # mkpasswd
-  users.groups = {
-    samuel.gid = 1000;
-  };
-  users.users.samuel = {
-    isNormalUser = true;
-    home = "/home/samuel";
-    shell = pkgs.zsh;
-    uid = 1000;
-    group = "samuel";
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
-  };
+  users = {
+    mutableUsers = true;
+    groups = {
+      samuel.gid = 1000;
+    };
 
-  #ps3 emulator bs can't use memory, always something
-  security.pam.loginLimits = [
-      {domain = "*";type = "hard";item = "memlock";value = "unlimited";}
-      {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
-  ];
+    users.samuel = {
+      isNormalUser = true;
+      home = "/home/samuel";
+      shell = pkgs.zsh;
+      uid = 1000;
+      group = "samuel";
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    };
+  };
 
 
 
@@ -258,27 +275,38 @@
   }];
 
 
+  security = {
   
-  # sudo
-  security.sudo = {
-    enable = true;
-    extraRules = [{
-      commands = [
-        {
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-        options = [ "NOPASSWD" ];
-        }
-        {
-        command = "${pkgs.systemd}/bin/reboot";
-        options = [ "NOPASSWD" ];
-        }
-        {
-        command = "${pkgs.systemd}/bin/poweroff";
-        options = [ "NOPASSWD" ];
-        }
-      ];
-      groups = [ "wheel" ];
-    }];
+    sudo = {
+      enable = true;
+      extraRules = [{
+        commands = [
+          {
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+          options = [ "NOPASSWD" ];
+          }
+          {
+          command = "${pkgs.systemd}/bin/reboot";
+          options = [ "NOPASSWD" ];
+          }
+          {
+          command = "${pkgs.systemd}/bin/poweroff";
+          options = [ "NOPASSWD" ];
+          }
+        ];
+        groups = [ "wheel" ];
+      }];
+    };
+    
+    #ps3 emulator bs can't use memory, always something
+    pam.loginLimits = [
+      {domain = "*";type = "hard";item = "memlock";value = "unlimited";}
+      {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
+    ];
+
+    #sound
+    rtkit.enable = true;
+
   };
 
 
