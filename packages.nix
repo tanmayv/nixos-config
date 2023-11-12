@@ -68,10 +68,13 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.compiz-alike-magic-lamp-effect
+    gnomeExtensions.rounded-window-corners
     gnome.gnome-tweaks
     inputs.nix-software-center.packages.${system}.nix-software-center
-    
-
+    glibc
+	    
+    #mpv
+    mpv
 
     #zsh shit
     starship
@@ -83,8 +86,8 @@
     git
 
     
-    #rustc
-    #cargo 
+    #recording 
+    obs-studio
     
     #communication
     discord

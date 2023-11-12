@@ -26,7 +26,7 @@
     binsh = "${pkgs.dash}/bin/dash";
 
     sessionVariables = rec {
-      #NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "1";
       XDG_CACHE_HOME  = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME   = "$HOME/.local/share";
@@ -66,21 +66,22 @@
           patches = (oldAttrs.patches or [ ]) ++ [
             
             #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
-            (super.fetchpatch {
-              url = "https://aur.archlinux.org/cgit/aur.git/plain/mr1441.patch?h=mutter-dynamic-buffering&id=d3a8bdd1b7bad6a7f3820f143fb8384dcd1ac497";
-              hash = "sha256-VHL+++nkbYOsgrlrj3aJHDcOjs/Wkma0+mJzbLsjmrY=";
-            })
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
+              #hash = "sha256-VHL+++nkbYOsgrlrj3aJHDcOjs/Wkma0+mJzbLsjmrY=";
+            #})
+
 
             #Bugs
-            (super.fetchpatch {
-              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.patch";
-              hash = "sha256-+7wIrXJs10n6f+BWGJNgWM3IN5xwX2ylINYoqVg8YcU=";
-            })
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.patch";
+              #hash = "sha256-+7wIrXJs10n6f+BWGJNgWM3IN5xwX2ylINYoqVg8YcU=";
+            #})
 
-            (super.fetchpatch {
-              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3342.patch";
-              hash = "sha256-dveVWMoZQocikLD3x7PnL7LT+DLfMhNuMnyWmhcBbbg=";
-            })
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3342.patch";
+              #hash = "sha256-dveVWMoZQocikLD3x7PnL7LT+DLfMhNuMnyWmhcBbbg=";
+            #})
 
             #(super.fetchpatch {
               #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3329.patch";
@@ -179,10 +180,6 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-        libva
-      ];
     };
 
     nvidia = {
@@ -190,11 +187,11 @@
       open = false;
       nvidiaSettings = true;
       dynamicBoost.enable = true; 
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       powerManagement.finegrained = true;
       nvidiaPersistenced = true;
 
-      
+
       prime = { 
         offload = {
           enable = true;
@@ -271,7 +268,7 @@
 
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 15*1024;
+    size = 256*1024;
   }];
 
 
@@ -299,10 +296,10 @@
     };
     
     #ps3 emulator bs can't use memory, always something
-    pam.loginLimits = [
-      {domain = "*";type = "hard";item = "memlock";value = "unlimited";}
-      {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
-    ];
+    #pam.loginLimits = [
+      #{domain = "*";type = "hard";item = "memlock";value = "unlimited";}
+      #{domain = "*";type = "soft";item = "memlock";value = "unlimited";}
+    #];
 
     #sound
     rtkit.enable = true;

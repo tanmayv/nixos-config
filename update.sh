@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+#update flake
+nix flake update
+
+
 # Update NixOS channels and switch to the latest generation
 nix-channel --update
 nixos-rebuild switch 
