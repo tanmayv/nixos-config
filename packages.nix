@@ -13,20 +13,23 @@
 
   #minimal gnome
   environment.gnome.excludePackages = (with pkgs; [
+    #gnome-console
+    #gnome-text-editor
+    #snapshot
+    #loupe
     gnome-photos
     gnome-tour
-    #gnome-text-editor
     gnome-connections
     simple-scan
     gnome-usage
-    #gnome-console
   ]) ++ 
   (with pkgs.gnome; [
     #gnome-calculator
     #gnome-system-monitor
     #file-roller
-    gnome-disk-utility
     #baobab
+    cheese
+    gnome-disk-utility
     gnome-logs
     seahorse
     eog
@@ -35,7 +38,6 @@
     yelp
     gnome-calendar
     gnome-contacts
-    cheese # webcam tool
     gnome-music
     gnome-software
     epiphany # web browser
@@ -69,9 +71,10 @@
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.compiz-alike-magic-lamp-effect
     gnomeExtensions.rounded-window-corners
+    gnomeExtensions.wintile-windows-10-window-tiling-for-gnome
     gnome.gnome-tweaks
     inputs.nix-software-center.packages.${system}.nix-software-center
-    glibc
+
 	    
     #mpv
     mpv
@@ -151,6 +154,12 @@
     libnotify
     mangohud
     
+    # winetricks (all versions)
+    winetricks
+
+    # native wayland support (unstable)
+    wineWowPackages.waylandFull
+    
     # asus system 
     asusctl
     supergfxctl
@@ -161,6 +170,9 @@
     spice-protocol
     win-virtio
     win-spice
+
+    #gaming
+    lutris
     
 
   ];
@@ -175,15 +187,6 @@
   ];
 
 
-  programs.gamemode.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-  
-  
   
 
   #virtmanager

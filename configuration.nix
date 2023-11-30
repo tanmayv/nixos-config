@@ -20,6 +20,52 @@
 
   };
 
+  #gnome patches
+  nixpkgs.overlays = [ 
+    
+    (self: super: {
+      gnome = super.gnome.overrideScope' (pself: psuper: {
+        
+        mutter = psuper.mutter.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            
+            #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
+            (super.fetchpatch {
+              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
+              hash = "sha256-i898wD3YjfZleWgbrLeRHU+Cg7qa7pZtM6LoePVBg9k=";
+            })
+
+            #Nvidia secondary GPU copy acceleration
+            (super.fetchpatch {
+              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
+              hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
+            })
+
+
+          ];
+        });
+ 
+        
+        gnome-control-center = psuper.gnome-control-center.overrideAttrs (oldAttrs: {
+          patches = oldAttrs.patches ++ [
+            /*
+            #varaiable refresh rate in settings
+            
+            (super.fetchpatch {
+              url = "https://aur.archlinux.org/cgit/aur.git/plain/734.patch?h=gnome-control-center-vrr";
+              hash = "sha256-8FGPLTDWbPjY1ulVxJnWORmeCdWKvNKcv9OqOQ1k/bE=";
+            })
+            */
+          
+          ];
+        });
+        
+      });
+    })
+  ];
+
+
+
 
   environment = {
     shells = with pkgs; [ zsh bash dash ];
@@ -53,65 +99,6 @@
 
 
 
-
-  #gnome patches
-  nixpkgs.overlays = [ 
-    
-    #gnome vrr patch *doesn't work on unstable channel*
-    
-    (self: super: {
-      gnome = super.gnome.overrideScope' (pself: psuper: {
-        
-        mutter = psuper.mutter.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [
-            
-            #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
-              #hash = "sha256-VHL+++nkbYOsgrlrj3aJHDcOjs/Wkma0+mJzbLsjmrY=";
-            #})
-
-
-            #Bugs
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.patch";
-              #hash = "sha256-+7wIrXJs10n6f+BWGJNgWM3IN5xwX2ylINYoqVg8YcU=";
-            #})
-
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3342.patch";
-              #hash = "sha256-dveVWMoZQocikLD3x7PnL7LT+DLfMhNuMnyWmhcBbbg=";
-            #})
-
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3329.patch";
-              #hash = "sha256-hSqmi4PEAXgLPN3t8/cKP65F9Pmhgpfxm+VzfT0upx8=";
-            #})
-  
-
-          ];
-        });
- 
-        
-        gnome-control-center = psuper.gnome-control-center.overrideAttrs (oldAttrs: {
-          patches = oldAttrs.patches ++ [
-            /*
-            #varaiable refresh rate in settings
-            
-            (super.fetchpatch {
-              url = "https://aur.archlinux.org/cgit/aur.git/plain/734.patch?h=gnome-control-center-vrr";
-              hash = "sha256-8FGPLTDWbPjY1ulVxJnWORmeCdWKvNKcv9OqOQ1k/bE=";
-            })
-            */
-          
-          ];
-        });
-        
-        
-      });
-    })
-  ];
-  
 
   services = {
 
@@ -171,6 +158,8 @@
       };
     };
 
+    initrd.kernelModules = [ "nvidia" ]; 
+    blacklistedKernelModules = ["nouveau"];
   };
 
 
@@ -180,6 +169,12 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+
+      extraPackages = with pkgs; [
+        rocm-opencl-icd
+        rocm-opencl-runtime
+      ];
+      
     };
 
     nvidia = {
@@ -295,11 +290,11 @@
       }];
     };
     
-    #ps3 emulator bs can't use memory, always something
-    #pam.loginLimits = [
-      #{domain = "*";type = "hard";item = "memlock";value = "unlimited";}
-      #{domain = "*";type = "soft";item = "memlock";value = "unlimited";}
-    #];
+    #emulator memory
+    pam.loginLimits = [
+      {domain = "*";type = "hard";item = "memlock";value = "unlimited";}
+      {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
+    ];
 
     #sound
     rtkit.enable = true;

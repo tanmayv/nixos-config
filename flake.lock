@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "gnomeNixpkgs": {
-      "locked": {
-        "lastModified": 1699534546,
-        "narHash": "sha256-rLVD/inMFet5nEulaacjXsTncXbPoipdKKYqPLwSSow=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d3eb30e4b2205e440e8b77ba1af1632d929e2fcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "gnome",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nix-software-center": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -53,23 +37,22 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1699099776,
-        "narHash": "sha256-X09iKJ27mGsGambGfkKzqvw5esP1L/Rf8H3u3fCqIiU=",
+        "lastModified": 1701375722,
+        "narHash": "sha256-NFfWfWfGOY60ZntgXHG2v/mQvnak24xJIdPp7UNLzVc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "85f1ba3e51676fa8cc604a3d863d729026a6b8eb",
+        "rev": "60508802527176bd2489b25c4fd963bc36db71e3",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "master",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
-        "gnomeNixpkgs": "gnomeNixpkgs",
         "nix-software-center": "nix-software-center",
         "nixpkgs": "nixpkgs_2"
       }
