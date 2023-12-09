@@ -29,7 +29,7 @@
     #file-roller
     #baobab
     cheese
-    gnome-disk-utility
+    #gnome-disk-utility
     gnome-logs
     seahorse
     eog
@@ -76,8 +76,8 @@
     inputs.nix-software-center.packages.${system}.nix-software-center
 
 	    
-    #mpv
-    mpv
+    #video player
+    celluloid
 
     #zsh shit
     starship
