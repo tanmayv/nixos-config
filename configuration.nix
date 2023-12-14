@@ -30,16 +30,16 @@
           patches = (oldAttrs.patches or [ ]) ++ [
             
             #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
-            (super.fetchpatch {
-              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
-              hash = "sha256-i898wD3YjfZleWgbrLeRHU+Cg7qa7pZtM6LoePVBg9k=";
-            })
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
+              #hash = "sha256-TVpX1mGPNaRAAEAmsdobhtNBpS7Lz1ymFB8Yo+SNzSU=";
+            #})
 
             #Nvidia secondary GPU copy acceleration
-            (super.fetchpatch {
-              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
-              hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
-            })
+            #(super.fetchpatch {
+              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
+              #hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
+            #})
 
 
           ];
