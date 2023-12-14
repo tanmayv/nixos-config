@@ -5,9 +5,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-software-center.url = "github:vlinkz/nix-software-center";
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+  
   };
 
-  outputs = inputs: {
+  outputs = inputs@{ nixpkgs, nix-software-center, home-manager, ... }: {
     nixosConfigurations = {
       nixos = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -15,7 +18,14 @@
           ./configuration.nix
           ./hardware-configuration.nix
           ./packages.nix  
-          ./home.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.samuel = import ./home.nix;
+          }
+
         ];
         specialArgs = {
           inherit inputs;
@@ -24,7 +34,7 @@
       };
     };
 
-    
-
   };
+  
+
 }
