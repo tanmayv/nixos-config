@@ -29,17 +29,16 @@
         mutter = psuper.mutter.overrideAttrs (oldAttrs: {
           patches = (oldAttrs.patches or [ ]) ++ [
             
-            #dynamic triple/double buffer *update to gnome 45 when it comes out if ever*
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
-              #hash = "sha256-TVpX1mGPNaRAAEAmsdobhtNBpS7Lz1ymFB8Yo+SNzSU=";
-            #})
+            (super.fetchpatch {
+              url = "https://aur.archlinux.org/cgit/aur.git/plain/mr1441.patch?h=mutter-dynamic-buffering";
+              hash = "sha256-Nup+3/oGXTaeXy0shNbVRoygT9DVy6hiKBf8b1v97Wk=";
+            })
 
             #Nvidia secondary GPU copy acceleration
-            #(super.fetchpatch {
-              #url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
-              #hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
-            #})
+            (super.fetchpatch {
+              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
+              hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
+            })
 
 
           ];
@@ -157,7 +156,7 @@
         efiSysMountPoint = "/boot";
       };
     };
-
+  
     initrd.kernelModules = [ "nvidia" ]; 
     blacklistedKernelModules = ["nouveau"];
   };
