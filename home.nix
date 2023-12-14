@@ -128,7 +128,56 @@
     };
   };
 
- 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+    };
+
+    initExtra = ''
+      (cat /home/samuel/.cache/wal/sequences &)
+      eval "$(starship init zsh)"
+    '';
+  };
+
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "WhiteSur-dark";
+      package = pkgs.whitesur-icon-theme;
+    };
+
+    theme = {
+      name = "Whitesur-Dark";
+      package = pkgs.whitesur-gtk-theme;
+    };
+
+    cursorTheme = {
+      name = "MacOS-BigSur";
+      package = pkgs.apple-cursor;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
+
+  home.sessionVariables.GTK_THEME = "Whitesur-Dark";
+
+
+
 
 
   home.stateVersion = "23.05";

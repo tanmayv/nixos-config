@@ -87,17 +87,6 @@
   };
 
 
-  programs = {
-
-    zsh.enable = true;
-    zsh.enableCompletion = true;
-    zsh.ohMyZsh.enable = true;
-    #zsh.ohMyZsh.theme = "trapd00r";
-
-  };
-
-
-
 
   services = {
 
@@ -241,13 +230,24 @@
 
 
 
+
+   programs = {
+
+    zsh.enable = true;
+
+  };
+
+
+
+
+
   #users
   users = {
     mutableUsers = true;
     groups = {
       samuel.gid = 1000;
     };
-
+   
     users.samuel = {
       isNormalUser = true;
       home = "/home/samuel";
