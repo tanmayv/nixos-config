@@ -172,6 +172,7 @@
 
     #gaming
     lutris
+    appimage-run
     
 
   ];

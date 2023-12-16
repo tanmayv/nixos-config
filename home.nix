@@ -530,7 +530,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/blur-my-shell" = {
       debug = false;
-      hacks-level = 3;
+      hacks-level = 0;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
