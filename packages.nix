@@ -25,7 +25,7 @@
   ]) ++ 
   (with pkgs.gnome; [
     #gnome-calculator
-    #gnome-system-monitor
+    gnome-system-monitor
     #file-roller
     #baobab
     cheese
@@ -87,7 +87,8 @@
     vscodium
     direnv
     
-
+    #task-manager
+    mission-center
     
     #recording 
     obs-studio
