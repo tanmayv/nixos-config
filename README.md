@@ -5,7 +5,7 @@ minimal nix config for gnome wayland for G15 Zephyrus 2021
 
 
 
-#Install Guide
+# Install Guide
 
 Install nixos on your system at https://nixos.org/download gnome install  *i think minimal will would not tested*
 
