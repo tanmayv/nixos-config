@@ -20,7 +20,7 @@ cd to nixos folder
 run these to clone my config over
 ```git init```
 
-```git remote add origin```
+```git remote add origin https://github.com/sjhaleprogrammer/nixos.git```
 
 ```git pull origin master```
 
