@@ -3,14 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-software-center.url = "github:vlinkz/nix-software-center";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
   
   };
 
-  outputs = inputs@{ nixpkgs, nix-software-center, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       nixos = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
