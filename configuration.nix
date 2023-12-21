@@ -41,9 +41,12 @@
 
   };
 
+  
 
 
   services = {
+
+    dbus.enable = true;
 
     xserver = {
       enable = true;
@@ -61,7 +64,7 @@
         ];
       };
 
-
+     
       videoDrivers = [ "nvidia" ];
        # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;

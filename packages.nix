@@ -18,18 +18,17 @@
 
 	    
     #video player
-    celluloid
+    mpv
 
     #zsh shit
     starship
     
-
     #ide 
     vscodium
     direnv
     
     #task-manager
-    mission-center
+    btop
     
     #recording 
     obs-studio
@@ -42,8 +41,15 @@
 
     #xbox controllers
     xboxdrv
-      
-  
+
+    #images
+    feh
+
+    #terminal
+    alacritty
+
+    #dmenu clone	  
+    bemenu  
    
     #libraries
     ntfs3g
@@ -89,12 +95,12 @@
     mediainfo
     imagemagick
     libnotify
-    mangohud
+    
     
    
 
     # native wayland support (unstable)
-    wineWowPackages.waylandFull
+    wineWowPackages.stable
     
     # asus system 
     asusctl
@@ -109,7 +115,11 @@
 
     #gaming
     lutris
+    mangohud
+
+    #appimage support
     appimage-run
+    
     
 
   ];
