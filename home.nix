@@ -147,13 +147,85 @@ with lib.hm.gvariant;
     '';
   };
 
-  
+  programs.i3status = {
+    enable = true;
 
-  
-  
+    general = {
+      colors = true;
+      interval = 5;
+
+    };
+
+    modules = {
+
+      ipv6 = { 
+        enable = false;
+      };
+
+      "wireless _first_" = {
+        enable = false;
+      };
+
+      "ethernet _first_" = {
+        enable = false;
+      };
 
 
-  
+      "battery all" = {
+          position = 2;
+          settings = { format = "%status %percentage %remaining"; };
+      };
+
+      "tztime local" = {
+        position = 4;
+        settings = { format = "%Y-%m-%d %H:%M:%S"; };
+      };
+
+      load = {
+          position = 3;
+          settings = { format = "%1min"; };
+      };
+
+      memory = {
+        enable = false;
+      };
+
+      "disk /" = {
+          position = 1;
+          settings = { format = "%avail"; };
+      };
+      
+
+    };
+    
+
+
+  };
+
+
+
+  xresources.properties = {
+      
+    "XTerm*faceName" = "monospace pixelsize=28";
+
+      
+  };
+    
+
+
+
+xi
+
+
 
 
 }
+  
+
+  
+  
+
+
+  
+
+
