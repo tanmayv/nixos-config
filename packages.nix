@@ -45,12 +45,8 @@
     #images
     feh
 
-    #terminal
-    alacritty
 
-    #dmenu clone	  
-    bemenu  
-   
+
     #libraries
     ntfs3g
     linuxHeaders
@@ -99,7 +95,7 @@
     
    
 
-    # native wayland support (unstable)
+    # native wayland support 
     wineWowPackages.stable
     
     # asus system 
