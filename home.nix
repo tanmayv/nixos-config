@@ -206,7 +206,7 @@ with lib.hm.gvariant;
 
   xresources.properties = {
       
-    "XTerm*faceName" = "monospace pixelsize=28";
+    "xTerm*faceName" = "monospace:pixelsize=28";
 
       
   };
