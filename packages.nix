@@ -45,9 +45,6 @@
     #images
     feh
 
-    #app launcher
-    dmenu
-
 
 
     #libraries
