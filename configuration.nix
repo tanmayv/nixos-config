@@ -12,8 +12,8 @@
     };
 
   };
-  
-  
+ 
+ 
   nix = {
     optimise.automatic = true;
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -118,14 +118,6 @@
     };
   
     initrd.kernelModules = [ "nvidia" ]; 
-
-
-
-    extraModprobeConfig = ''
-      blacklist nouveau
-      options nouveau modeset=0
-    '';
-
     blacklistedKernelModules = ["nouveau"];
   };
 

@@ -9,10 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-exec --no-startup-id /etc/nixos/3.sh
-exec --no-startup-id feh --bg-scale /etc/nixos/background
-
-
 
 set $mod Mod1
 
