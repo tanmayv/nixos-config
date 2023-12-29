@@ -145,7 +145,7 @@
       open = false;
       nvidiaSettings = true;
       dynamicBoost.enable = true; 
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       powerManagement.finegrained = true;
       nvidiaPersistenced = true;
 
