@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs,  ... }:
 
 
 {
@@ -73,8 +73,7 @@
     gnomeExtensions.rounded-window-corners
     gnomeExtensions.wintile-windows-10-window-tiling-for-gnome
     gnome.gnome-tweaks
-    inputs.nix-software-center.packages.${system}.nix-software-center
-
+    
 	    
     #video player
     celluloid

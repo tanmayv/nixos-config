@@ -20,48 +20,6 @@
 
   };
 
-  #gnome patches
-  nixpkgs.overlays = [ 
-    
-    (self: super: {
-      gnome = super.gnome.overrideScope' (pself: psuper: {
-        
-        mutter = psuper.mutter.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [
-            
-            (super.fetchpatch {
-              url = "https://aur.archlinux.org/cgit/aur.git/plain/mr1441.patch?h=mutter-dynamic-buffering";
-              hash = "sha256-Nup+3/oGXTaeXy0shNbVRoygT9DVy6hiKBf8b1v97Wk=";
-            })
-
-            #Nvidia secondary GPU copy acceleration
-            (super.fetchpatch {
-              url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3304.diff";
-              hash = "sha256-n3PMW5A40+Vr1m6bMWlsyCtDnI8JwsvLY1YtSJtfy0Q=";
-            })
-
-
-          ];
-        });
- 
-        
-        gnome-control-center = psuper.gnome-control-center.overrideAttrs (oldAttrs: {
-          patches = oldAttrs.patches ++ [
-            /*
-            #varaiable refresh rate in settings
-            
-            (super.fetchpatch {
-              url = "https://aur.archlinux.org/cgit/aur.git/plain/734.patch?h=gnome-control-center-vrr";
-              hash = "sha256-8FGPLTDWbPjY1ulVxJnWORmeCdWKvNKcv9OqOQ1k/bE=";
-            })
-            */
-          
-          ];
-        });
-        
-      });
-    })
-  ];
 
 
 
@@ -71,7 +29,7 @@
     binsh = "${pkgs.dash}/bin/dash";
 
     sessionVariables = rec {
-      NIXOS_OZONE_WL = "1";
+      #NIXOS_OZONE_WL = "1";
       XDG_CACHE_HOME  = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME   = "$HOME/.local/share";
@@ -181,7 +139,7 @@
           enableOffloadCmd = true;
         };
 
-        amdgpuBusId = "PCI:7:0:0";
+        amdgpuBusId = "PCI:69:0:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };
