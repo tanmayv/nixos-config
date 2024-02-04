@@ -65,12 +65,8 @@
     #gnome exclusive
     switcheroo-control #dbus for dual gpu
     gnomeExtensions.appindicator
-    gnomeExtensions.hide-top-bar
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.blur-my-shell
     gnomeExtensions.supergfxctl-gex
-    gnomeExtensions.compiz-alike-magic-lamp-effect
-    gnomeExtensions.rounded-window-corners
     gnomeExtensions.wintile-windows-10-window-tiling-for-gnome
     gnome.gnome-tweaks
     
@@ -101,12 +97,7 @@
     #xbox controllers
     xboxdrv
       
-  
-    #themes
-    whitesur-icon-theme
-    whitesur-gtk-theme
-    apple-cursor
-    
+
    
     #libraries
     ntfs3g
