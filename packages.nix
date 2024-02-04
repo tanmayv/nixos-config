@@ -211,9 +211,16 @@
       enable = true;
       enableUserService = true;
     };
+    supergfxd = {
+      enable = true;
+      settings = {
+        vfio_enable = true;
+        hotplug_type = "Asus"; 
+      };
+    };
   };
-  services.supergfxd.enable = true;
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
+
+  systemd.services.supergfxd.path = [ pkgs.pciutils pkgs.lsof ];
 
 
 

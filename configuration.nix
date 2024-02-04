@@ -104,7 +104,6 @@
       };
     };
   
-    initrd.kernelModules = [ "nvidia" ]; 
     blacklistedKernelModules = ["nouveau"];
   };
 
