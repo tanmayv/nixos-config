@@ -68,6 +68,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.wintile-windows-10-window-tiling-for-gnome
+    gnomeExtensions.frequency-boost-switch
     gnome.gnome-tweaks
     
 	    
@@ -217,6 +218,10 @@
 
   #gnome exclusive services
   services.switcherooControl.enable = true;
+
+
+
+  
 
   
 }

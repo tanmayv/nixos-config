@@ -103,7 +103,7 @@
         efiSysMountPoint = "/boot";
       };
     };
-  
+    
     blacklistedKernelModules = ["nouveau"];
   };
 
@@ -256,6 +256,17 @@
 
   };
 
+  systemd.services.onbattery = {
+
+    description = "change amdpstate on battery";
+
+    script = "python3 /etc/nixos/scripts/auto-epp.py";
+
+    path = [ pkgs.python3 ];
+
+    wantedBy = [ "multi-user.target" ];
+
+  };  
 
 
 

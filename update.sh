@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #update flake
-nix flake update 
+#nix flake update 
 
 
 # Update NixOS channels and switch to the latest generation
