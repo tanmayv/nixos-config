@@ -1,8 +1,10 @@
-{ config, pkgs,  ... }:
+{ config, pkgs, ... }:
 
 
 {
   nixpkgs.config.allowUnfree = true;
+ 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   
@@ -64,11 +66,11 @@
 
     #gnome exclusive
     switcheroo-control #dbus for dual gpu
+    gnomeExtensions.blur-my-shell
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
     gnomeExtensions.supergfxctl-gex
-    gnomeExtensions.wintile-windows-10-window-tiling-for-gnome
-    gnomeExtensions.frequency-boost-switch
+    gnomeExtensions.screen-rotate # 2 in 1 extension
     gnome.gnome-tweaks
     
 	    
@@ -156,15 +158,17 @@
     supergfxctl
     
     #virtual machines
+    /*
     virt-manager
     spice spice-gtk
     spice-protocol
     win-virtio
     win-spice
+    */
 
     #gaming
-    lutris
     appimage-run
+    lutris
     
 
   ];
@@ -181,8 +185,10 @@
 
   
 
+
   #virtmanager
-  programs.dconf.enable = true;
+  
+  /*
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -195,7 +201,22 @@
     spiceUSBRedirection.enable = true;
   };
   services.spice-vdagentd.enable = true;
+  */
 
+
+
+  #podman
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   #asus system services
   services = {

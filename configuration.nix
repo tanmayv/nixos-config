@@ -88,7 +88,8 @@
 
   #bootloader
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest; #most update kernel    
+    kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
+    kernelParams = ["quiet" "splash" "video=DP-2:1920x1080@240.00"];
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -143,6 +144,9 @@
       };
     };
 
+    #2 in 1 laptop
+    sensor.iio.enable = true;
+
     logitech.wireless.enable = true;
     pulseaudio.enable = false;
 
@@ -190,7 +194,7 @@
 
   programs = {
     zsh.enable = true;
-
+    dconf.enable = true;
   };
 
 
@@ -210,7 +214,7 @@
       shell = pkgs.zsh;
       uid = 1000;
       group = "samuel";
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "networkmanager" /*"libvirtd"*/ ]; # Enable ‘sudo’ for the user.
     };
   };
 
