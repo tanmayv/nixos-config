@@ -92,7 +92,7 @@
     obs-studio
     
     #communication
-    discord
+    webcord
 
     #browser
     brave
@@ -166,9 +166,16 @@
     win-spice
     */
 
+   
+    appimage-run #runs appimages 
+    steam-run #runs linux binaries
+    bottles #for wine applications
+
     #gaming
-    appimage-run
-    lutris
+    retroarchFull #emulation
+    
+    
+
     
 
   ];

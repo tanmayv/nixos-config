@@ -15,6 +15,12 @@ with lib.hm.gvariant;
     enable = true;
     userName = "Samuel Hale";
     userEmail = "samworlds1231337@gmail.com";
+    extraConfig = {
+      safe = {
+        directory = "/etc/nixos";
+      };
+    };
+  
   };
 
   
@@ -150,24 +156,37 @@ with lib.hm.gvariant;
   gtk = {
     enable = true;
 
-
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+    iconTheme = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
     };
 
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
     
   };
 
   home.sessionVariables.GTK_THEME = "Adwaita:dark";
 
-  
+  home.pointerCursor = 
+    let 
+      getFrom = url: hash: name: {
+          gtk.enable = true;
+          x11.enable = true;
+          name = name;
+          size = 26;
+          package = 
+            pkgs.runCommand "moveUp" {} ''
+              mkdir -p $out/share/icons
+              ln -s ${pkgs.fetchzip {
+                url = url;
+                hash = hash;
+              }} $out/share/icons/${name}
+          '';
+        };
+    in
+      getFrom 
+        "https://github.com/manu-mannattil/adwaita-cursors/releases/download/v1.2/adwaita-cursors.tar.gz"
+        "sha256-zKa55zn4UO/cCTx2Es0xKxUwjFe5/k5xWI9RLJYpvsQ="
+        "Adwaita";
 
 
 }

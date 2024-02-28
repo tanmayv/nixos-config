@@ -29,7 +29,7 @@
     binsh = "${pkgs.dash}/bin/dash";
 
     sessionVariables = rec {
-      #NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "1";
       XDG_CACHE_HOME  = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME   = "$HOME/.local/share";
@@ -89,7 +89,12 @@
   #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
-    kernelParams = ["quiet" "splash" "video=DP-2:1920x1080@240.00"];
+    kernelParams = ["quiet" "splash" "video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10"];
+    #splash
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+    };
     loader = {
       systemd-boot.enable = false;
       grub = {
