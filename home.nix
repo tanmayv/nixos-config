@@ -157,14 +157,15 @@ with lib.hm.gvariant;
     enable = true;
 
     iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
-
+    
+    theme = {
+      name = "Adwaita-dark";
+    };
     
   };
-
-  home.sessionVariables.GTK_THEME = "Adwaita:dark";
 
   home.pointerCursor = 
     let 

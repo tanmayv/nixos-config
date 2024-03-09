@@ -80,10 +80,8 @@
     #zsh shit
     starship
     
-
     #ide 
-    vscodium
-    direnv
+    neovim
     
     #task-manager
     mission-center
@@ -92,7 +90,7 @@
     obs-studio
     
     #communication
-    webcord
+    discord 
 
     #browser
     brave
@@ -179,6 +177,9 @@
     
 
   ];
+
+
+ 
 
   fonts.packages = with pkgs; [
     font-awesome
