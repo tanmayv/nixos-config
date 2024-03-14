@@ -80,12 +80,6 @@
     #zsh shit
     starship
     
-    #ide 
-    neovim
-    
-    #task-manager
-    mission-center
-    
     #recording 
     obs-studio
     
@@ -148,8 +142,7 @@
     
    
 
-    # native wayland support (unstable)
-    wineWowPackages.waylandFull
+    
     
     # asus system 
     asusctl
@@ -167,7 +160,6 @@
    
     appimage-run #runs appimages 
     steam-run #runs linux binaries
-    bottles #for wine applications
 
     #gaming
     retroarchFull #emulation

@@ -3,7 +3,9 @@
 with lib.hm.gvariant;
 
 {
- 
+  
+  
+
   home.username = "samuel";
   home.homeDirectory = "/home/samuel";
   home.stateVersion = "23.05";
@@ -188,6 +190,7 @@ with lib.hm.gvariant;
         "https://github.com/manu-mannattil/adwaita-cursors/releases/download/v1.2/adwaita-cursors.tar.gz"
         "sha256-zKa55zn4UO/cCTx2Es0xKxUwjFe5/k5xWI9RLJYpvsQ="
         "Adwaita";
-
+  
+ 
 
 }
