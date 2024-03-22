@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ...}:
 
 {
   
@@ -89,12 +89,7 @@
   #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
-    kernelParams = ["quiet" "splash" "video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10"];
-    #splash
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-    };
+    kernelParams = ["video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10"];
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -129,7 +124,6 @@
     };
 
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
@@ -198,14 +192,7 @@
 
 
 
-  programs = {
-    zsh.enable = true;
-    dconf.enable = true;
-  };
-
-
-
-
+  programs.zsh.enable = true;
 
   #users
   users = {
@@ -265,20 +252,6 @@
     rtkit.enable = true;
 
   };
-
-  systemd.services.onbattery = {
-
-    description = "change amdpstate on battery";
-
-    script = "python3 /etc/nixos/scripts/auto-epp.py";
-
-    path = [ pkgs.python3 ];
-
-    wantedBy = [ "multi-user.target" ];
-
-  };  
-
-
 
 
 

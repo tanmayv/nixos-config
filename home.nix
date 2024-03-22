@@ -1,21 +1,23 @@
 { config, pkgs, lib, ... }:
 
-with lib.hm.gvariant;
+with lib.hm.wt;
 
 {
-  
-  
+
+  # Let home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
 
   home.username = "samuel";
   home.homeDirectory = "/home/samuel";
   home.stateVersion = "23.05";
-  # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  
+  
 
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "Samuel Hale";
+    userName = "samuel";
     userEmail = "samworlds1231337@gmail.com";
     extraConfig = {
       safe = {
@@ -143,7 +145,7 @@ with lib.hm.gvariant;
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable  = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
@@ -165,6 +167,7 @@ with lib.hm.gvariant;
     
     theme = {
       name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
     };
     
   };
@@ -192,5 +195,9 @@ with lib.hm.gvariant;
         "Adwaita";
   
  
+
+
+
+
 
 }

@@ -28,9 +28,10 @@
           ./configuration.nix
           /etc/nixos/hardware-configuration.nix
           ./packages.nix
-          ./neovim.nix
-          
-          
+	
+	  #relies on nixvim input 
+	  ./neovim.nix
+
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;

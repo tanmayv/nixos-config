@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 
 {
@@ -15,7 +15,7 @@
 
   #minimal gnome
   environment.gnome.excludePackages = (with pkgs; [
-    #gnome-console
+    gnome-console
     #gnome-text-editor
     #snapshot
     #loupe
@@ -64,15 +64,18 @@
   environment.systemPackages = with pkgs; [
     
 
-    #gnome exclusive
     switcheroo-control #dbus for dual gpu
-    gnomeExtensions.blur-my-shell
+    
+    #gmome
     gnomeExtensions.appindicator
-    gnomeExtensions.dash-to-dock
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.screen-rotate # 2 in 1 extension
+    gnomeExtensions.rounded-window-corners # waiting for update >:(
+    gnomeExtensions.auto-move-windows
     gnome.gnome-tweaks
     
+    #terminal 
+    blackbox-terminal
 	    
     #video player
     celluloid
@@ -82,10 +85,7 @@
     
     #recording 
     obs-studio
-    
-    #communication
-    discord 
-
+     
     #browser
     brave
 
@@ -171,6 +171,13 @@
   ];
 
 
+  programs = {
+    steam = {
+	enable = true;
+	remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+	dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+  };
  
 
   fonts.packages = with pkgs; [
@@ -241,7 +248,7 @@
   services.switcherooControl.enable = true;
 
 
-
+  services.auto-epp.enable = true;
   
 
   
