@@ -172,6 +172,24 @@ with lib.hm.wt;
     
   };
 
+  dconf.settings = {
+
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+
+    "org/gnome/desktop/peripherals/mouse" = {
+      accel-profile = "flat";
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      two-finger-scrolling-enabled = true;
+    };
+
+
+
+  };
+
   home.pointerCursor = 
     let 
       getFrom = url: hash: name: {
