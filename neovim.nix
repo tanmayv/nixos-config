@@ -4,10 +4,10 @@
     imports = [inputs.nixvim.nixosModules.nixvim];
     programs.nixvim = {
 	enable = true;
-	plugins.lightline.enable = true;
+
+
         clipboard.providers.wl-copy.enable = true;
 	
-     
 
 	options = {
 	   number = true;         # Show line numbers
@@ -17,22 +17,27 @@
 
 
 	plugins = {
+	 
+	  airline.enable = true;
+
+	  cmp-nvim-lsp.enable = true;
+
+	  cmp.enable = true;
 	  
 	  gitsigns.enable = true;  
 
 	  nvim-tree.enable = true;
 
-	  telescope = {
-		  enable = true;
-
-	  };
+	  telescope.enable = true;
+	  
+	  codeium-vim.enable = true;
 
           treesitter = {
 	          enable = true;
 		  gccPackage = pkgs.gcc;
           };
 	
-	  codeium-vim.enable = true;
+	  
 	
 
 	  lsp = {
@@ -44,6 +49,7 @@
 		tsserver.enable = true;
 		#rust-analyzer.enable = true;
 		nil_ls.enable = true;
+		clangd.enable = true;
 	    };
 
 	  };

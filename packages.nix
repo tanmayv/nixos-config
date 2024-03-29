@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 
 {
@@ -72,6 +72,7 @@
     gnomeExtensions.screen-rotate # 2 in 1 extension
     gnomeExtensions.rounded-window-corners # waiting for update >:(
     gnomeExtensions.auto-move-windows
+    gnomeExtensions.vitals
     gnome.gnome-tweaks
     
     #terminal 
@@ -92,8 +93,10 @@
     #xbox controllers
     xboxdrv
       
+    #discord
+    webcord
 
-   
+
     #libraries
     ntfs3g
     linuxHeaders
@@ -140,13 +143,7 @@
     libnotify
     mangohud
     
-   
-
     
-    
-    # asus system 
-    asusctl
-    supergfxctl
     
     #virtual machines
     /*
@@ -228,6 +225,7 @@
   #asus system services
   services = {
     asusd = {
+      package = inputs.asusctl.legacyPackages.x86_64-linux.asusctl;
       enable = true;
       enableUserService = true;
     };
@@ -248,7 +246,7 @@
   services.switcherooControl.enable = true;
 
 
-  services.auto-epp.enable = true;
+  
   
 
   

@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    asusctl.url = "github:soulsoiledit/nixpkgs-asusctl-5.0.10/asusctl-5.0.10";
    
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -14,12 +16,12 @@
     	inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    
+     
     
     
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixvim, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nixvim, asusctl, ... }: {
     nixosConfigurations = {
       nixos = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
