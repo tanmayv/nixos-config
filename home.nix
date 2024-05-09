@@ -11,8 +11,8 @@ with lib.hm.wt;
   home.username = "samuel";
   home.homeDirectory = "/home/samuel";
   home.stateVersion = "23.05";
-  
-  
+
+
 
   # basic configuration of git, please change to your own
   programs.git = {
@@ -24,10 +24,10 @@ with lib.hm.wt;
         directory = "/etc/nixos";
       };
     };
-  
+
   };
 
-  
+
 
   # starship - an customizable prompt for any shell
   programs.starship = {
@@ -37,7 +37,7 @@ with lib.hm.wt;
       add_newline = false;
       command_timeout = 1000;
       format = "$os$username$hostname$kubernetes$directory$git_branch$git_status";
-      
+
       character = {
         success_symbol = "";
         error_symbol = "";
@@ -112,7 +112,7 @@ with lib.hm.wt;
 
       vagrant = {
         disabled = true;
-      };  
+      };
 
       docker_context = {
         disabled = true;
@@ -121,7 +121,7 @@ with lib.hm.wt;
       helm = {
         disabled = true;
       };
-      
+
       python = {
         disable = true;
       };
@@ -133,7 +133,7 @@ with lib.hm.wt;
       ruby = {
         disable = true;
       };
-      
+
       terraform = {
         disable = true;
       };
@@ -145,7 +145,7 @@ with lib.hm.wt;
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable  = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
@@ -164,12 +164,12 @@ with lib.hm.wt;
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
     };
-    
+
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome.gnome-themes-extra;
     };
-    
+
   };
 
   dconf.settings = {
@@ -190,29 +190,29 @@ with lib.hm.wt;
 
   };
 
-  home.pointerCursor = 
-    let 
+  home.pointerCursor =
+    let
       getFrom = url: hash: name: {
-          gtk.enable = true;
-          x11.enable = true;
-          name = name;
-          size = 26;
-          package = 
-            pkgs.runCommand "moveUp" {} ''
-              mkdir -p $out/share/icons
-              ln -s ${pkgs.fetchzip {
-                url = url;
-                hash = hash;
-              }} $out/share/icons/${name}
+        gtk.enable = true;
+        x11.enable = true;
+        name = name;
+        size = 26;
+        package =
+          pkgs.runCommand "moveUp" { } ''
+            mkdir -p $out/share/icons
+            ln -s ${pkgs.fetchzip {
+              url = url;
+              hash = hash;
+            }} $out/share/icons/${name}
           '';
-        };
+      };
     in
-      getFrom 
-        "https://github.com/manu-mannattil/adwaita-cursors/releases/download/v1.2/adwaita-cursors.tar.gz"
-        "sha256-zKa55zn4UO/cCTx2Es0xKxUwjFe5/k5xWI9RLJYpvsQ="
-        "Adwaita";
-  
- 
+    getFrom
+      "https://github.com/manu-mannattil/adwaita-cursors/releases/download/v1.2/adwaita-cursors.tar.gz"
+      "sha256-zKa55zn4UO/cCTx2Es0xKxUwjFe5/k5xWI9RLJYpvsQ="
+      "Adwaita";
+
+
 
 
 
