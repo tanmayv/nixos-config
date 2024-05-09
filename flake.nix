@@ -5,20 +5,20 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     asusctl.url = "github:soulsoiledit/nixpkgs-asusctl-5.0.10/asusctl-5.0.10";
-   
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixvim = {
-    	url = "github:nix-community/nixvim/main";
-    	inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-     
-    
-    
+
+
+
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nixvim, asusctl, ... }: {
@@ -30,27 +30,28 @@
           ./configuration.nix
           /etc/nixos/hardware-configuration.nix
           ./packages.nix
-	
-	  #relies on nixvim input 
-	  ./neovim.nix
 
-          home-manager.nixosModules.home-manager {
+          #relies on nixvim input 
+          ./neovim.nix
+
+          home-manager.nixosModules.home-manager
+          {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users = {
-                samuel = import ./home.nix; 
+                samuel = import ./home.nix;
               };
             };
           }
 
         ];
-        
-        
+
+
       };
     };
 
   };
-  
+
 
 }

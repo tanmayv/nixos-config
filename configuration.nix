@@ -1,8 +1,8 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 
 {
-  
- 
+
+
   system = {
     stateVersion = "23.05";
     activationScripts.linkBash = {
@@ -12,8 +12,8 @@
     };
 
   };
- 
- 
+
+
   nix = {
     optimise.automatic = true;
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -30,14 +30,14 @@
 
     sessionVariables = rec {
       NIXOS_OZONE_WL = "1";
-      XDG_CACHE_HOME  = "$HOME/.cache";
+      XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_DATA_HOME   = "$HOME/.local/share";
-      XDG_STATE_HOME  = "$HOME/.local/state";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_STATE_HOME = "$HOME/.local/state";
 
       # Not officially in the specification
       XDG_BIN_HOME = "$HOME/.local/bin";
-      PATH = [ 
+      PATH = [
         "${XDG_BIN_HOME}"
       ];
     };
@@ -53,7 +53,7 @@
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
       videoDrivers = [ "nvidia" ];
-       # Enable touchpad support (enabled default in most desktopManager).
+      # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
 
     };
@@ -73,15 +73,15 @@
     #printing.enable = true;
 
     #openssh = {
-      #enable = true;
-      #ports = [ 22552 ];
-      #settings = {
-        #PermitRootLogin = "no";
-        #PasswordAuthentication = false;
-        #KbdInteractiveAuthentication = false;
+    #enable = true;
+    #ports = [ 22552 ];
+    #settings = {
+    #PermitRootLogin = "no";
+    #PasswordAuthentication = false;
+    #KbdInteractiveAuthentication = false;
     #};
 
-    
+
 
   };
 
@@ -89,7 +89,7 @@
   #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
-    kernelParams = ["video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10"];
+    kernelParams = [ "video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10" ];
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -104,13 +104,13 @@
         efiSysMountPoint = "/boot";
       };
     };
-    
-    blacklistedKernelModules = ["nouveau"];
+
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
 
   hardware = {
-  
+
     opengl = {
       enable = true;
       driSupport = true;
@@ -120,20 +120,20 @@
         rocm-opencl-icd
         rocm-opencl-runtime
       ];
-      
+
     };
 
     nvidia = {
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      dynamicBoost.enable = true; 
+      dynamicBoost.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = true;
       nvidiaPersistenced = true;
 
 
-      prime = { 
+      prime = {
         offload = {
           enable = true;
           enableOffloadCmd = true;
@@ -157,9 +157,9 @@
 
 
   networking = {
-    
+
     hostName = "nixos"; # Define your hostname.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
     enableIPv6 = true;
 
     nat = {
@@ -175,18 +175,18 @@
       #allowedUDPPorts = [ 53 51820 ];
     };
 
-    
+
   };
-  
+
 
 
   #time 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  console = { 
+  console = {
     font = "Lat2-Terminus16";
-      keyMap = "us";
+    keyMap = "us";
   };
 
 
@@ -200,7 +200,7 @@
     groups = {
       samuel.gid = 1000;
     };
-   
+
     users.samuel = {
       isNormalUser = true;
       home = "/home/samuel";
@@ -215,37 +215,37 @@
 
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 32*1024;
+    size = 32 * 1024;
   }];
 
 
   security = {
-  
+
     sudo = {
       enable = true;
       extraRules = [{
         commands = [
           {
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-          options = [ "NOPASSWD" ];
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+            options = [ "NOPASSWD" ];
           }
           {
-          command = "${pkgs.systemd}/bin/reboot";
-          options = [ "NOPASSWD" ];
+            command = "${pkgs.systemd}/bin/reboot";
+            options = [ "NOPASSWD" ];
           }
           {
-          command = "${pkgs.systemd}/bin/poweroff";
-          options = [ "NOPASSWD" ];
+            command = "${pkgs.systemd}/bin/poweroff";
+            options = [ "NOPASSWD" ];
           }
         ];
         groups = [ "wheel" ];
       }];
     };
-    
+
     #emulator memory
     pam.loginLimits = [
-      {domain = "*";type = "hard";item = "memlock";value = "unlimited";}
-      {domain = "*";type = "soft";item = "memlock";value = "unlimited";}
+      { domain = "*"; type = "hard"; item = "memlock"; value = "unlimited"; }
+      { domain = "*"; type = "soft"; item = "memlock"; value = "unlimited"; }
     ];
 
     #sound

@@ -3,13 +3,13 @@
 
 {
   nixpkgs.config.allowUnfree = true;
- 
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  
-  
-  
+
+
+
   # And ensure gnome-settings-daemon udev rules are enabled 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
@@ -24,7 +24,7 @@
     gnome-connections
     simple-scan
     gnome-usage
-  ]) ++ 
+  ]) ++
   (with pkgs.gnome; [
     #gnome-calculator
     gnome-system-monitor
@@ -46,7 +46,7 @@
     geary # email reader
     evince # document viewer
     gnome-characters
-    gnome-weather 
+    gnome-weather
     gnome-clocks
     totem # video player
     tali # poker game
@@ -54,18 +54,18 @@
     hitori # sudoku game
     atomix # puzzle game
   ]);
-  
-  
 
-  services.xserver.excludePackages = (with pkgs; [ 
-    xterm 
+
+
+  services.xserver.excludePackages = (with pkgs; [
+    xterm
   ]);
 
   environment.systemPackages = with pkgs; [
-    
+
 
     switcheroo-control #dbus for dual gpu
-    
+
     #gmome
     gnomeExtensions.appindicator
     gnomeExtensions.supergfxctl-gex
@@ -74,25 +74,25 @@
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
     gnome.gnome-tweaks
-    
+
     #terminal 
     blackbox-terminal
-	    
+
     #video player
     celluloid
 
     #zsh shit
     starship
-    
+
     #recording 
     obs-studio
-     
+
     #browser
     brave
 
     #xbox controllers
     xboxdrv
-      
+
     #discord
     webcord
 
@@ -105,7 +105,7 @@
     alsa-utils
     alsa-firmware
     gjs
-   
+
     #utilities
     pywal
     killall
@@ -142,40 +142,40 @@
     imagemagick
     libnotify
     mangohud
-    
-    
-    
+
+
+
     #virtual machines
     /*
-    virt-manager
-    spice spice-gtk
-    spice-protocol
-    win-virtio
-    win-spice
+      virt-manager
+      spice spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
     */
 
-   
+
     appimage-run #runs appimages 
     steam-run #runs linux binaries
 
     #gaming
     retroarchFull #emulation
-    
-    
 
-    
+
+
+
 
   ];
 
 
   programs = {
     steam = {
-	enable = true;
-	remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-	dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
   };
- 
+
 
   fonts.packages = with pkgs; [
     font-awesome
@@ -187,13 +187,13 @@
   ];
 
 
-  
+
 
 
   #virtmanager
-  
+
   /*
-  virtualisation = {
+    virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
@@ -203,8 +203,8 @@
       };
     };
     spiceUSBRedirection.enable = true;
-  };
-  services.spice-vdagentd.enable = true;
+    };
+    services.spice-vdagentd.enable = true;
   */
 
 
@@ -233,7 +233,7 @@
       enable = true;
       settings = {
         vfio_enable = true;
-        hotplug_type = "Asus"; 
+        hotplug_type = "Asus";
       };
     };
   };
@@ -246,8 +246,8 @@
   services.switcherooControl.enable = true;
 
 
-  
-  
 
-  
+
+
+
 }
