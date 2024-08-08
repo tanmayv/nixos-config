@@ -53,9 +53,7 @@
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
       videoDrivers = [ "nvidia" ];
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
-
+            
     };
 
     #sound
@@ -68,6 +66,9 @@
       jack.enable = true;
       wireplumber.enable = true;
     };
+    
+    #touchpad
+    libinput.enable = true;
 
     # Enable CUPS to print documents.
     #printing.enable = true;
@@ -89,7 +90,7 @@
   #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
-    kernelParams = [ "video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76" "amdgpu.dcdebugmask=0x10" ];
+    kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -111,10 +112,9 @@
 
   hardware = {
 
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
 
       extraPackages = with pkgs; [
         rocm-opencl-icd
@@ -127,10 +127,10 @@
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      dynamicBoost.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = true;
-      nvidiaPersistenced = true;
+      #dynamicBoost.enable = true;
+      #powerManagement.enable = true;
+      #powerManagement.finegrained = true;
+      #nvidiaPersistenced = true;
 
 
       prime = {

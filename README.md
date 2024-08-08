@@ -56,9 +56,11 @@ This guide provides a minimal NixOS configuration for ASUS laptops equipped with
     nixos-generate-config
     ```
 
-9. Switch to the new configuration:
+9. Update flake and switch to the new configuration:
 
     ```
+    nix --extra-experimental-features "nix-command flakes" flake update
+
     sudo nixos-rebuild switch --impure
     ```
 

@@ -25,34 +25,34 @@
     simple-scan
     gnome-usage
   ]) ++
-  (with pkgs.gnome; [
+  (with pkgs; [
     #gnome-calculator
     gnome-system-monitor
     #file-roller
     #baobab
     cheese
     #gnome-disk-utility
-    gnome-logs
+    gnome.gnome-logs
     seahorse
     eog
-    gnome-maps
+    gnome.gnome-maps
     gnome-font-viewer
     yelp
     gnome-calendar
-    gnome-contacts
-    gnome-music
-    gnome-software
+    gnome.gnome-contacts
+    gnome.gnome-music
+    gnome.gnome-software
     epiphany # web browser
     geary # email reader
     evince # document viewer
-    gnome-characters
-    gnome-weather
-    gnome-clocks
+    gnome.gnome-characters
+    gnome.gnome-weather
+    gnome.gnome-clocks
     totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
+    gnome.tali # poker game
+    gnome.iagno # go game
+    gnome.hitori # sudoku game
+    gnome.atomix # puzzle game
   ]);
 
 
@@ -73,7 +73,7 @@
     gnomeExtensions.rounded-window-corners # waiting for update >:(
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
-    gnome.gnome-tweaks
+    gnome-tweaks
 
     #terminal 
     blackbox-terminal
@@ -88,13 +88,13 @@
     obs-studio
 
     #browser
-    brave
+    firefox
 
     #xbox controllers
     xboxdrv
 
     #discord
-    webcord
+    vesktop
 
 
     #libraries
