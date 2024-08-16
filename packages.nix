@@ -120,7 +120,7 @@
     rsync
     ripgrep
     fzf
-    neofetch
+    fastfetch
     mpc-cli
     mlocate
     inotify-tools
@@ -158,8 +158,8 @@
     appimage-run #runs appimages 
     steam-run #runs linux binaries
 
-    #gaming
-    retroarchFull #emulation
+    #emulation
+    retro-gtk 
 
 
 
@@ -225,7 +225,6 @@
   #asus system services
   services = {
     asusd = {
-      package = inputs.asusctl.legacyPackages.x86_64-linux.asusctl;
       enable = true;
       enableUserService = true;
     };

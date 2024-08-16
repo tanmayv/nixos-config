@@ -89,7 +89,7 @@
 
   #bootloader
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest; #most update kernel   
+    kernelPackages = pkgs.linuxPackages_6_9; #most update kernel   
     kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
     loader = {
       systemd-boot.enable = false;
@@ -127,9 +127,9 @@
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      #dynamicBoost.enable = true;
+      dynamicBoost.enable = true;
       #powerManagement.enable = true;
-      #powerManagement.finegrained = true;
+      powerManagement.finegrained = true;
       #nvidiaPersistenced = true;
 
 
