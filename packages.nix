@@ -158,12 +158,6 @@
     appimage-run #runs appimages 
     steam-run #runs linux binaries
 
-    #emulation
-    retro-gtk 
-
-
-
-
 
   ];
 
