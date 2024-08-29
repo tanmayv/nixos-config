@@ -26,6 +26,8 @@
           #relies on nixvim input 
           ./neovim.nix
 
+	  ./virtualization.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager = {

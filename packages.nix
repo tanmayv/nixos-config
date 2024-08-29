@@ -70,7 +70,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.screen-rotate # 2 in 1 extension
-    gnomeExtensions.rounded-window-corners # waiting for update >:(
+    gnomeExtensions.rounded-window-corners-reborn# waiting for update >:(
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
     gnome-tweaks
@@ -145,14 +145,6 @@
 
 
 
-    #virtual machines
-    /*
-      virt-manager
-      spice spice-gtk
-      spice-protocol
-      win-virtio
-      win-spice
-    */
 
 
     appimage-run #runs appimages 
@@ -182,28 +174,11 @@
 
 
 
+  
 
-
-  #virtmanager
-
-  /*
-    virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-    spiceUSBRedirection.enable = true;
-    };
-    services.spice-vdagentd.enable = true;
-  */
-
-
-
+  
   #podman
+  /*
   virtualisation = {
     podman = {
       enable = true;
@@ -215,19 +190,14 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+  */
+
 
   #asus system services
   services = {
     asusd = {
       enable = true;
       enableUserService = true;
-    };
-    supergfxd = {
-      enable = true;
-      settings = {
-        vfio_enable = true;
-        hotplug_type = "Asus";
-      };
     };
   };
 

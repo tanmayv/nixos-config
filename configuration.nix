@@ -89,7 +89,6 @@
 
   #bootloader
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_9; #most update kernel   
     kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
     loader = {
       systemd-boot.enable = false;
@@ -127,7 +126,7 @@
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      dynamicBoost.enable = true;
+      #dynamicBoost.enable = true;
       #powerManagement.enable = true;
       powerManagement.finegrained = true;
       #nvidiaPersistenced = true;
@@ -207,7 +206,7 @@
       shell = pkgs.zsh;
       uid = 1000;
       group = "samuel";
-      extraGroups = [ "wheel" "networkmanager" /*"libvirtd"*/ ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
   };
 
