@@ -48,12 +48,12 @@ with lib.hm.wt;
 
     iconTheme = {
       name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      package = pkgs.gnome.adwaita-icon-theme;
     };
 
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      package = pkgs.gnome.gnome-themes-extra;
     };
 
   };

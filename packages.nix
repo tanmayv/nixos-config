@@ -15,7 +15,7 @@
 
   #minimal gnome
   environment.gnome.excludePackages = (with pkgs; [
-    gnome-console
+    #gnome-console
     #gnome-text-editor
     #snapshot
     #loupe
@@ -25,34 +25,34 @@
     simple-scan
     gnome-usage
   ]) ++
-  (with pkgs; [
+  (with pkgs.gnome; [
     #gnome-calculator
     gnome-system-monitor
     #file-roller
     #baobab
     cheese
     #gnome-disk-utility
-    gnome.gnome-logs
+    gnome-logs
     seahorse
     eog
-    gnome.gnome-maps
+    gnome-maps
     gnome-font-viewer
     yelp
     gnome-calendar
-    gnome.gnome-contacts
-    gnome.gnome-music
-    gnome.gnome-software
+    gnome-contacts
+    gnome-music
+    gnome-software
     epiphany # web browser
     geary # email reader
     evince # document viewer
-    gnome.gnome-characters
-    gnome.gnome-weather
-    gnome.gnome-clocks
+    gnome-characters
+    gnome-weather
+    gnome-clocks
     totem # video player
-    gnome.tali # poker game
-    gnome.iagno # go game
-    gnome.hitori # sudoku game
-    gnome.atomix # puzzle game
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
   ]);
 
 
@@ -70,13 +70,11 @@
     gnomeExtensions.appindicator
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.screen-rotate # 2 in 1 extension
-    gnomeExtensions.rounded-window-corners-reborn# waiting for update >:(
+    #gnomeExtensions.rounded-window-corners-reborn# waiting for update >:(
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
-    gnome-tweaks
+    gnome.gnome-tweaks
 
-    #terminal 
-    blackbox-terminal
 
     #video player
     celluloid
