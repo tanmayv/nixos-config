@@ -70,6 +70,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.screen-rotate # 2 in 1 extension
+    gnomeExtensions.gsnap
     #gnomeExtensions.rounded-window-corners-reborn# waiting for update >:(
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
@@ -153,6 +154,7 @@
 
 
   programs = {
+    gamemode.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
