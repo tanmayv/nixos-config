@@ -96,7 +96,6 @@
 
   #bootloader
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_10; 
     kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
     loader = {
       systemd-boot.enable = false;
@@ -112,7 +111,9 @@
         efiSysMountPoint = "/boot";
       };
     };
-
+    
+    kernel.sysctl."vm.max_map_count" = 2147483642;
+    
     blacklistedKernelModules = [ "nouveau" ];
   };
 
