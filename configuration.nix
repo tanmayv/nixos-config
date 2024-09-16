@@ -95,8 +95,7 @@
 
 
   #bootloader
-  boot = {
-    kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
+  boot = { 
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -112,9 +111,6 @@
       };
     };
     
-    kernel.sysctl."vm.max_map_count" = 2147483642;
-    
-    blacklistedKernelModules = [ "nouveau" ];
   };
 
 

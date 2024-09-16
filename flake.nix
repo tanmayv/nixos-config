@@ -20,6 +20,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+	  ./kernel.nix
           /etc/nixos/hardware-configuration.nix
           ./packages.nix
 

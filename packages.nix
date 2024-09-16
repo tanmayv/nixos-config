@@ -95,6 +95,8 @@
     #discord
     vesktop
 
+    #school shit 
+    teams-for-linux
 
     #libraries
     ntfs3g
