@@ -71,6 +71,7 @@
     gnomeExtensions.supergfxctl-gex
     gnomeExtensions.screen-rotate # 2 in 1 extension
     gnomeExtensions.gsnap
+    gnomeExtensions.quick-settings-audio-panel
     #gnomeExtensions.rounded-window-corners-reborn# waiting for update >:(
     gnomeExtensions.auto-move-windows
     gnomeExtensions.vitals
