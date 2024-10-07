@@ -7,7 +7,7 @@
 	 fedora-asus-kernel = {buildLinux, ...} @ args:
 	   buildLinux (args
 	    // rec {
-	      version = "6.11.0";
+	      version = "6.11.2";
 	      extraMeta.branch = "6.11";
 	      modDirVersion = version;
 
@@ -15,13 +15,14 @@
 	      src = pkgs.stdenv.mkDerivation rec {
 		name = "linux-source";
 		inherit version;
+		
 
 		# - [lukenukem/asus-kernel](https://copr.fedorainfracloud.org/coprs/lukenukem/asus-kernel/package/kernel/)
 		# - [/results/lukenukem/asus-kernel/fedora-40-x86_64/07623253-kernel/](https://download.copr.fedorainfracloud.org/results/lukenukem/asus-kernel/fedora-40-x86_64/07623253-kernel/)
 		# - [kernel build logs](https://download.copr.fedorainfracloud.org/results/lukenukem/asus-kernel/fedora-40-x86_64/07623253-kernel/builder-live.log.gz)
 		src = builtins.fetchurl {
-		  url = "https://download.copr.fedorainfracloud.org/results/lukenukem/asus-kernel/fedora-41-x86_64/08026916-kernel/kernel-6.11.0-666.rog.fc41.src.rpm";
-		  sha256 = "sha256:1zs8shim3mc536j8jj9nman6g7mj2fpxn8ndcpmcdnm5y7jjqf4p";
+		  url = "https://download.copr.fedorainfracloud.org/results/lukenukem/asus-kernel/fedora-41-x86_64/08111496-kernel/kernel-6.11.2-666.rog.fc41.src.rpm";
+		  sha256 = "sha256:0gdnc7b239aprwa8pg6jsh30xq8fmsxwv6ljm67zra369fxzqdfk";
 		};
 
 		phases = ["unpackPhase" "patchPhase"];
@@ -31,7 +32,7 @@
 		  mkdir $out
 		  mv ./* $out
 		  cd $out
-		  tar -xf $out/linux-6.11.tar.xz --strip-components 1 -C $out/.
+		  tar -xf $out/linux-${version}.tar.xz --strip-components 1 -C $out/.
 		'';
 
 		patchPhase = ''
@@ -58,25 +59,7 @@
 		  mv ./Makefile2 ./Makefile
 		'';
 	      };
-	      kernelPatches = [];
-	      # kernelPatches = map (x: {
-	      #     name = x;
-	      #     patch = "${src}/${x}";
-	      # }) [
-	      #   # patches are listed in rpm package kernel.spec
-	      #   # - [kernel.spec](https://copr-dist-git.fedorainfracloud.org/cgit/lukenukem/asus-kernel/kernel.git/tree/kernel.spec?id=5af4c495d3fb0cfed91e457308be4598ba4af95a#n1830)
-	      #   # "patch-6.9-redhat.patch"
-	      #   # ...
-	      # ];
-	      # kernelPatches = let
-	      #   names = pkgs.lib.strings.split "\n" (builtins.readFile "${fedora-40-asus-kernel-source}/patches.txt");
-	      #   filtered-names = pkgs.lib.lists.filter (e: ! (e == "" || e == [])) names;
-	      #   patches = map (x: {
-	      #     name = x;
-	      #     patch = "${src}/${x}";
-	      #   }) filtered-names;
-	      # in patches;
-	    
+	      	    
 	    } // (args.argsOverride or {}));
 	    linux_g14 = pkgs.callPackage fedora-asus-kernel {};
 	   in
@@ -84,7 +67,7 @@
 			
 	
 
-	kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
+	kernelParams = [  "amdgpu.dcdebugmask=0x10" "video=DP-6:1920x1080@239.76" "video=DP-2:1920x1080@239.76"];
 	    
 	kernel.sysctl."vm.max_map_count" = 2147483642;
     

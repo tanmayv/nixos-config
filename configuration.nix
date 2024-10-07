@@ -58,7 +58,10 @@
     xserver = {
       enable = true;
       desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.gdm = {
+	enable = true;
+	wayland = true;
+      };
       videoDrivers = [ "nvidia" ];
             
     };
@@ -139,7 +142,7 @@
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      #dynamicBoost.enable = true;
+      dynamicBoost.enable = true;
       #powerManagement.enable = true;
       powerManagement.finegrained = true;
       #nvidiaPersistenced = true;
