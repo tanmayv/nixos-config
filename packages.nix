@@ -108,6 +108,7 @@
 
     #utilities
     obsidian
+    ticktick
     pywal
     killall
     pamixer
