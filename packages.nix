@@ -84,10 +84,8 @@
     #zsh shit
     starship
 
-    #recording 
-    obs-studio
-
     #browser
+    google-chrome
     firefox
 
     #xbox controllers
@@ -109,6 +107,7 @@
     gjs
 
     #utilities
+    obsidian
     pywal
     killall
     pamixer
@@ -117,6 +116,7 @@
     streamlink
     wget
     unzip
+    neofetch
     time
     socat
     rsync

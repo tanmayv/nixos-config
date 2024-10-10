@@ -57,6 +57,7 @@
 
     xserver = {
       enable = true;
+	xkb.options = "ctrl:nocaps";
       desktopManager.gnome.enable = true;
       displayManager.gdm = {
 	enable = true;
@@ -154,7 +155,7 @@
           enableOffloadCmd = true;
         };
 
-        amdgpuBusId = "PCI:69:0:0";
+        amdgpuBusId = "PCI:65:0:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };
@@ -196,7 +197,7 @@
 
 
   #time 
-  time.timeZone = "America/New_York";
+  time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
 
   console = {

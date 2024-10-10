@@ -17,14 +17,13 @@ with lib.hm.wt;
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "samuel";
-    userEmail = "samworlds1231337@gmail.com";
+    userName = "Tanmay Vijayvargiya";
+    userEmail = "12tanmayvijay@gmail.com";
     extraConfig = {
       safe = {
         directory = "/etc/nixos";
       };
     };
-
   };
 
 
