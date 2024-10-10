@@ -99,6 +99,7 @@
 
     #libraries
     ntfs3g
+    lazygit
     linuxHeaders
     linux-firmware
     fakeroot
