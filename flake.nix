@@ -45,8 +45,8 @@
 
           #relies on nixvim input 
           ./neovim.nix
-
 	  ./virtualization.nix
+	  ./secrets.nix
 
           home-manager.nixosModules.home-manager
           {

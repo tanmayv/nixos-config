@@ -109,6 +109,7 @@
 
     #utilities
     obsidian
+    chatgpt-cli
     ticktick
     pywal
     killall
